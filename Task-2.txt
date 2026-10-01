@@ -1,0 +1,26 @@
+34 ?- female(X).
+X = sara ;
+X = nora.
+Explanation: This query asks Prolog to find all facts in the knowledge base that match the female predicate. Prolog instantiates the variable X with the first match it finds (sara), and after you press the semicolon (;), it searches for the next match and returns nora
+
+35 ?- male(_).
+true .
+Explanation: This query checks whether there is any male in the knowledge base. By using the underscore (_), which is an anonymous variable, you are telling Prolog that a position must be filled for the query to be true, but you do not care about retrieving the specific name. Prolog finds at least one male and simply returns true.
+
+36 ?- parent(X, Y), parent(Y, faisal).
+X = ali,
+Y = muhammad .
+Explanation: This query is designed to find the grandparent of faisal. It uses a shared variable Y to link two goals together. Prolog first figures out that muhammad is the parent of faisal (so Y = muhammad), and then finds who the parent of muhammad is, returning X = ali.
+
+37 ?- parent(ahmad, X), female(X).
+X = sara ;
+X = nora .
+Explanation: This queries for all daughters of ahmad. The shared variable X must satisfy both conditions simultaneously: it must be a child of ahmad AND it must be female. Prolog searches the facts and correctly returns sara and nora.
+
+38 ?- parent(X, ahmad), parent(X, muhammad).
+X = ali.
+Explanation: This checks if ahmad and muhammad have a common parent. Because the exact same variable X is used in both places, it must represent one single person who is the parent of both. Prolog finds that ali satisfies this requirement.
+
+39 ?- male(khan), parent(X, khan), parent(X, nora).
+X = ahmad.
+Explanation: This query establishes if khan is the brother of nora. For this to be true, three conditions must be met: khan must be male, and there must be a parent X who is the parent of khan, and that same parent X must also be the parent of nora. Prolog confirms these facts and identifies their shared parent as ahmad.

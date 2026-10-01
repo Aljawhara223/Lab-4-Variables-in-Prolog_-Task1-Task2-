@@ -1,0 +1,42 @@
+14 ?- house = house.
+true.
+Explanation: A constant unifies with itself.
+
+15 ?- house = abc.
+false.
+Explanation: Two different atoms (constants) never unify.
+
+16 ?- edge(a,b) = edge(C,b).
+C = a.
+Explanation: The variable C unifies with the atom a.
+
+17 ?- edge(a,d) = edge(C,B).
+C = a,
+B = d.
+Explanation: The variables C and B are instantiated to a and d respectively to make the structures identical.
+
+18 ?- edge(C,B) = edge(a,d).
+C = a,
+B = d.
+Explanation: This is the same as the previous query; variables can take values from either side of the unification operator.
+
+19 ?- edge(A,f(g,h)) = edge(a,B).
+A = a,
+B = f(g, h).
+Explanation: Variable A takes the atom a, and variable B takes the entire structure f(g,h) because a variable can unify with any term at all.
+
+20 ?- edge(A,A) = edge(b,c).
+false.
+Explanation: The same variable A must hold the same value across the query. It cannot be both b and c simultaneously.
+
+21 ?- edge(A,A) = edge(b,b).
+A = b.
+Explanation: The variable A unifies consistently with b in both argument positions.   
+
+22 ?- A = B, B = f.
+A = B, B = f.
+Explanation: Variable A and B become linked as shared variables. When B is instantiated to f, A also becomes f.
+
+23 ?-  A = B, B = f, A = e.
+false.
+Explanation: A and B both become f. The final condition attempts to unify f = e, which fails because two different atoms cannot unify.
